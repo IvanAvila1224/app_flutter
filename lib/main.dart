@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'App Palabras',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 38, 193, 18)),
+          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 9, 155, 148)),
         ),
         home: MyHomePage(),
       ),

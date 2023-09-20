@@ -32,7 +32,7 @@ class Login extends StatelessWidget {
 
               // logo
               Text(
-                'LogIn',
+                'Iniciar Sesion',
                 style: TextStyle(
                   color: const Color.fromARGB(255, 14, 22, 28),
                   fontWeight: FontWeight.bold,
@@ -44,7 +44,7 @@ class Login extends StatelessWidget {
 
               // welcome back, you've been missed!
               Text(
-                '¡Hola de nuevo!',
+                '¡Bienvenido!',
                 style: TextStyle(
                   color: Colors.grey[700],
                   fontSize: 16,
@@ -78,7 +78,7 @@ class Login extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Forgot Password?',
+                      'Olvidaste tu Contraseña?',
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                   ],

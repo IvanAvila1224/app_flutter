@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/components/my_button.dart';
 import 'package:namer_app/components/my_textfield.dart';
 import 'package:namer_app/components/square_tile.dart';
+import 'package:namer_app/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class Signin extends StatelessWidget {
   Signin({super.key});
 
   // text editing controllers
+  final emailController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -21,6 +24,7 @@ class Signin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var authService = Provider.of<AuthService>(context);
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -28,7 +32,7 @@ class Signin extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
 
               // logo
               Text(
@@ -54,6 +58,12 @@ class Signin extends StatelessWidget {
               const SizedBox(height: 25),
 
               // username textfield
+              MyTextField(
+                controller: emailController,
+                hintText: 'Email',
+                obscureText: false,
+              ),
+
               MyTextField(
                 controller: usernameController,
                 hintText: 'Username',
@@ -85,14 +95,35 @@ class Signin extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
 
               // sign in button
-              MyButton(onTap: () {
-                enterUser(context);
-              }),
+              ElevatedButton(
+                onPressed: () async {
+                  final email = emailController.text;
+                  final username = usernameController.text;
+                  final password = passwordController.text;
 
-              const SizedBox(height: 50),
+                  final loginOk = await authService.register(email ,username, password);
+
+                  print(loginOk);
+
+                  if (loginOk) {
+                    
+                    Navigator.pushNamed(context, '/home');
+                  } else {
+                   
+                    print('El inicio de sesión ha fallado');
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue, // Color de fondo del botón
+                  onPrimary: Colors.white, // Color del texto del botón
+                ),
+                child: Text('Register'), // Puedes personalizar el texto aquí
+              ),
+
+              const SizedBox(height: 30),
 
               // or continue with
               Padding(
@@ -122,7 +153,7 @@ class Signin extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
 
               // google + apple sign in buttons
               Row(
@@ -133,7 +164,7 @@ class Signin extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 25),
 
               InkWell(
                 onTap: () {

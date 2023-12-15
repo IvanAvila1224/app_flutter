@@ -21,7 +21,7 @@ class FitService with ChangeNotifier {
     final response = await http.post(
       url,
       headers: {
-        'Authorization': 'Bearer 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', // Asegúrate de que el token sea correcto
+        'Authorization': 'Bearer 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', // Asegúrate de que el token sea correcto
         'Accept': 'application/vnd.github.v3+json',
         'Content-type': 'application/json',
       },
